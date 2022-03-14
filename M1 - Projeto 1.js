@@ -7,7 +7,7 @@ const prompt = require('prompt-sync')();
 let dimensao = `Uruzar`
 let princesa = `princesa Arlim`;
 let pedra = `pedra mística Labuge`;
-let dragao = `dragão Míssera`;
+let dragao = `Míssera`;
 let aldeoes = `Gustovs`;
 let espada = `espada Livera`;
 let resultado = 0;
@@ -20,7 +20,7 @@ let historia2 = prompt(`Até que, um intenso terremoto abriu um portal fechado a
 console.clear();
 let historia3 = prompt(`Um explorador chamado Gerald que vasculhava ali próximo, encontrou esse portal e ao colocar a mão nele foi sugado pra outra dimensão chamada ${dimensao}...\n\nPressione ENTER pra continuar`);
 console.clear();
-let historia4 = prompt(`Para sair dessa dimensão e voltar pra casa, ele precisa:\nlibertar aldeões sequestrados \nencontrar uma pedra mística \nroubar de monstros uma espada mágica \nsalvar a princesa \ne enfrentar uma dragão...\n\nPressione ENTER pra continuar`);
+let historia4 = prompt(`Para sair dessa dimensão e voltar pra casa, ele precisa:\nlibertar aldeões sequestrados \nencontrar uma pedra mística \nroubar de monstros uma espada mágica \nsalvar a princesa \ne enfrentar um dragão...\n\nPressione ENTER pra continuar`);
 console.clear();
 let historia5 = prompt(`Após passar por todos esses desafios, precisamos saber quais missões foram cumpridas para definir o destino do nosso herói e da dimensão ${dimensao}...\n\nPressione ENTER pra continuar`);
 console.clear();
@@ -47,7 +47,7 @@ while (pergunta4 != `s` && pergunta4 != `sim` && pergunta4 != `n` && pergunta4 !
     console.clear();
 };
 while (pergunta5 != `s` && pergunta5 !== `sim` && pergunta5 !== `n` && pergunta5 != `nao`) {
-    pergunta5 = prompt(`Você matou o ${dragao}? `).toLowerCase();
+    pergunta5 = prompt(`Você matou o dragão ${dragao}? `).toLowerCase();
     console.clear();
 };
 
@@ -81,11 +81,11 @@ if (pergunta5 == `s` || pergunta5 == `sim`) {
 if (resultado == 0){
     console.log(`Você foi um completo desastre, não cumprindo nenhuma missão que lhe foi designado. \nA cidade mística será um reino eterno do ${dragao}! \nA ${princesa} ficará presa até a morte. \nOs aldeões de ${aldeoes} foram mortos. \nVocê nunca voltará para casa. \n`)
 } else if (resultado == 1 || resultado == 2) {
-    console.log(`Desastrosa foi sua jornada como herói! \nMesmo você conseguindo cumprir alguma missão, não foi o suficiente para salvar a dimensão ${dimensao} ou voltar pra casa! \nSó te resta viver nessa dimensão para sempre \n`);
+    console.log(`Desastrosa foi sua jornada como herói! \nMesmo você conseguindo cumprir alguma missão, não foi o suficiente para salvar a dimensão ${dimensao} ou voltar pra casa! \nSó te resta viver nessa dimensão para sempre... ou enquanto conseguir viver. \n`);
 } else if (resultado == 3) {
-    console.log(`Você quase conseguiu completar todas as suas tarefas. \nFelizmente, por conta das que você completou poderá voltar pra casa ou salvar a dimensão ${dimensao}. \n`);
+    console.log(`Você quase conseguiu completar todas as suas tarefas. \nFelizmente, por conta das que você completou poderá voltar pra casa, deixando a dimensão ${dimensao} por sua própria conta ou salvá-la permanecendo nela para sempre. \n`);
 } else if (resultado == 4) {
-    console.log(`Nossa! Foi por pouco! Mais uma tarefa e você teria tido êxito completo em suas missões. \nCom as missões que cumpriu terá a escolha de salvar a dimensão ${dimensao} ou voltar para casa. \n`);
+    console.log(`Nossa! Foi por pouco! Mais uma tarefa e você teria tido êxito completo em suas missões. \nCom as missões que cumpriu terá a escolha de salvar a dimensão ${dimensao} e permanecer nela para sempre ou voltar para casa e deixar ${dimensao} por conta própria. \n`);
 } else if (resultado == 5) {
     console.log(`Você cumpriu majestosamente suas missões! \nProvou ser um bravo héroi e agora poderá voltar para casa deixando a dimensão ${dimensao} à salvo! \nPARABÉNS! \n`);
 }
