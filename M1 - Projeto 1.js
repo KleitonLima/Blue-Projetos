@@ -20,7 +20,7 @@ let historia2 = prompt(`Até que, um intenso terremoto abriu um portal fechado a
 console.clear();
 let historia3 = prompt(`Um explorador chamado Gerald que vasculhava ali próximo, encontrou esse portal e ao colocar a mão nele foi sugado pra outra dimensão chamada ${dimensao}...\n\nPressione ENTER pra continuar`);
 console.clear();
-let historia4 = prompt(`Para sair dessa dimensão e voltar pra casa, ele precisa:\nlibertar aldeões sequestrados \nencontrar uma pedra mística \nroubar de monstros uma espada mágica \nsalvar a princesa \ne enfrentar um dragão...\n\nPressione ENTER pra continuar`);
+let historia4 = prompt(`Para salvar essa dimensão e voltar pra casa, ele precisa:\n- Libertar aldeões sequestrados \n- Encontrar uma pedra mística \n- Roubar de monstros uma espada mágica \n- Salvar a princesa \n- Enfrentar um dragão...\n\nPressione ENTER pra continuar`);
 console.clear();
 let historia5 = prompt(`Após passar por todos esses desafios, precisamos saber quais missões foram cumpridas para definir o destino do nosso herói e da dimensão ${dimensao}...\n\nPressione ENTER pra continuar`);
 console.clear();
@@ -52,11 +52,16 @@ while (pergunta5 != `s` && pergunta5 !== `sim` && pergunta5 !== `n` && pergunta5
 };
 
 //Exibindo as respostas
+console.log(`Confira suas respostas:`);
 console.log(`Encontrou a ${pedra}? - ${pergunta1}`);
 console.log(`Roubou a ${espada}? - ${pergunta2}`);
 console.log(`Resgatou a ${princesa}? - ${pergunta3}`);
 console.log(`Salvou os aldeões de ${aldeoes} - ${pergunta4}`);
-console.log(`Matou o ${dragao}? - ${pergunta5}`);
+console.log(`Matou o dragão ${dragao}? - ${pergunta5}`);
+
+console.log();
+console.log(`Pressione ENTER para ver seu resultado...`);
+prompt();
 
 console.clear();
 
