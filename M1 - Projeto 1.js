@@ -3,7 +3,6 @@ const prompt = require('prompt-sync')();
 
 // A Jornada do Herói
 
-//História
 let dimensao = `Uruzar`
 let princesa = `princesa Arlim`;
 let pedra = `pedra mística Labuge`;
@@ -12,6 +11,7 @@ let aldeoes = `Gustovs`;
 let espada = `espada Livera`;
 let resultado = 0;
 
+//História
 let historia0 = prompt(`Gerald o Herói! \n\nPressione ENTER pra continuar`);
 console.clear();
 let historia1 = prompt(`Nos tempos atuais, não mais se ouvia falar em dragões, espadas ou pedras mágicas...\n\nPressione ENTER pra continuar`);
