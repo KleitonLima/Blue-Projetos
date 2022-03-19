@@ -24,7 +24,7 @@ while (repete == `s` || repete == `sim`) {
   do {
     rodadasT = +prompt(`Quantas rodadas você deseja jogar? `);
     console.clear();
-  } while (Number.isNaN(rodadasT) || rodadasT > 10 || rodadasT < 0);
+  } while (Number.isNaN(rodadasT) || rodadasT > 10 || rodadasT < 1);
 
   console.clear();
 
@@ -34,7 +34,7 @@ while (repete == `s` || repete == `sim`) {
     console.clear();
 
     // CONDIÇÃO PRA SOMENTE ACEITAR UM NÚMERO E QUE SEJA DE 1 À 3
-    while (escolhaU < 0 || escolhaU > 3 || isNaN(escolhaU)) {
+    while (escolhaU < 1 || escolhaU > 3 || isNaN(escolhaU)) {
       console.clear();
       console.log(`Digite 1 para PEDRA, 2 para PAPEL ou 3 para TESOURA`);
       console.log();
