@@ -6,23 +6,82 @@ const prompt = require("prompt-sync")();
 // JOKENPÔ
 
 // VARIAVÉIS    // USEI UMA VÍRGULA SEM NADA ANTES PRA INVÁLIDAR O ÍNDICE "0", SENDO POSSÍVEL SELECIONAR SOMENTE DE 1 Á 3
-let elementos = [, `PEDRA`, `PAPEL`, `TESOURA`],
-  escolhaU,
-  escolhaIA,
-  repete = `s`;
+let repete = `s`,
+  conhece;
 
-//CONDIÇÃO PARA JOGAR NOVAMENTE
+console.log(`#Jokenpô#`);
+console.log();
+console.log(`Seja bem vindo ao Jokenpô!`);
+console.log();
+console.log(`Eu sou a July e irei jogar com você!`);
+console.log();
+
+while (
+  conhece != `sim` &&
+  conhece != `s` &&
+  conhece != `nao` &&
+  conhece != `n`
+) {
+  conhece = prompt(
+    console.log(
+      `Antes de continuar, preciso saber se você conhece o jogo Jokenpô?`
+    )
+  ).toLowerCase();
+  console.clear();
+}
+
+if (conhece == `nao` || conhece == `n`) {
+  console.log(`Tudo bem!`);
+  console.log(
+    `Pelo nome Jokenpô você pode não conhecer mas, tenho quase certeza que conhece`
+  );
+  conhece = prompt(
+    console.log(`pelo nome PEDRA, PAPEL e TESOURA, não conhece?`)
+  ).toLowerCase();
+  console.clear();
+  if (conhece == `nao` || conhece == `n`) {
+    console.clear();
+    console.log(`Então, deixa eu te explicar.`);
+    console.log(
+      `Jokenpô ou PEDRA, PAPEL e TESOURA, é um jogo onde você escolhe um entre os três elementos:`
+    );
+    console.log(
+      `PEDRA, PAPEL ou TESOURA, sendo que PEDRA ganha de TESOURA e perde para o PAPEL.`
+    );
+    console.log(
+      `PAPEL ganha da PEDRA e perde para a TESOURA. Já a TESOURA ganha do PAPEL e perde para a PEDRA.`
+    );
+    console.log(
+      `Você deve escolher um e eu escolherei outro, ao final das rodadas que você definir veremos quem venceu.`
+    );
+    console.log();
+    console.log(`Vamos começar a entender na prática.`);
+    console.log();
+    prompt(console.log(`Pressione ENTER para continuar...`));
+  }
+} else {
+  console.log(`Perfeito! Então, vamos começar!`);
+  console.log();
+  prompt(console.log(`Pressione ENTER para continuar...`));
+}
+
+// CONDIÇÃO PARA JOGAR NOVAMENTE
 while (repete == `s` || repete == `sim`) {
   console.clear();
-  let pontosU = 0,
+
+  // VARIÁVEIS
+  let elementos = [, `PEDRA`, `PAPEL`, `TESOURA`],
+    pontosU = 0,
     pontosIA = 0,
     empate = 0,
     rodadasT = 0,
-    rodadaA = 0;
+    rodadaA = 0,
+    escolhaU,
+    escolhaIA;
 
   // CONDIÇÃO PARA ACEITAR SOMENTE NÚMEROS NA QUANTIDADE DE RODADAS
   do {
-    rodadasT = +prompt(`Quantas rodadas você deseja jogar? `);
+    rodadasT = +prompt(`Quantas rodadas você deseja jogar?(Max=10) `);
     console.clear();
   } while (Number.isNaN(rodadasT) || rodadasT > 10 || rodadasT < 1);
 
@@ -52,7 +111,7 @@ while (repete == `s` || repete == `sim`) {
     (escolhaU = elementos[escolhaU]), (escolhaIA = elementos[escolhaIA]);
 
     // EXIBINDO AS ESCOLHAS
-    rodadaA++
+    rodadaA++;
     console.log(`Rodada ${rodadaA}`);
     console.log(`Você: ${escolhaU}`);
     console.log(`Máquina: ${escolhaIA}`);
@@ -60,7 +119,7 @@ while (repete == `s` || repete == `sim`) {
     //EXIBINDO O RESULTADO DA RODADA
     if (escolhaU == escolhaIA) {
       console.log();
-      console.log(`DEU EMPATE`);
+      console.log(`DEU EMPATE :|`);
       console.log(`______________________________________________________`);
       empate++;
     } else if (
@@ -83,17 +142,23 @@ while (repete == `s` || repete == `sim`) {
   // EXIBINDO O RESULTADO FINAL
   console.log(`RESULTADO FINAL`);
   console.log();
-  console.log(`Você venceu ${pontosU}`);
-  console.log(`Eu venci ${pontosIA}`);
-  console.log(`Empates ${empate}`);
+  console.log(`Você venceu: ${pontosU}`);
+  console.log(`Máquina venceu: ${pontosIA}`);
+  console.log(`Empates: ${empate}`);
   console.log();
 
   if (pontosU == pontosIA) {
-    console.log(`VOCÊS EMPATARAM`);
+    console.log(`VOCÊS EMPATARAM :o`);
   } else if (pontosU > pontosIA) {
-    console.log(`VOCÊ FOI O GRANDE CAMPEÃO!`);
+    console.log(`VOCÊ FOI O GRANDE CAMPEÃO! :D`);
+    console.log();
+    console.log(`Uau! Estou impressionado.`);
   } else {
-    console.log(`VOCÊ FOI DERROTADO!`);
+    console.log(`VOCÊ FOI DERROTADO! :(`);
+    console.log();
+    console.log(
+      `Não fique triste. Tente outra vez. Tenho certeza que terá mais sorte.`
+    );
   }
   console.log();
 
@@ -110,7 +175,7 @@ while (repete == `s` || repete == `sim`) {
 
   // ENCERRANDO O JOGO
   if (repete == `n` || repete == `nao`) {
-    console.log(`Foi um prazer jogar com você! Volte mais vezes`);
+    console.log(`Foi um prazer jogar com você! Volte mais vezes! :)`);
   }
 }
 
