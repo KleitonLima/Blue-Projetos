@@ -35,6 +35,10 @@ if (conhece == `nao` || conhece == `n`) {
     console.log(`Vamos começar a entender na prática.`);
     console.log();
     prompt(console.log(`Pressione ENTER para continuar...`));
+  } else {
+    console.log(`Perfeito! Então, vamos começar!`);
+    console.log();
+    prompt(console.log(`Pressione ENTER para continuar...`));
   }
 } else {
   console.log(`Perfeito! Então, vamos começar!`);
@@ -89,7 +93,7 @@ while (repete == `s` || repete == `sim`) {
     rodadaA++;
     console.log(`Rodada ${rodadaA}`);
     console.log(`Você: ${escolhaU}`);
-    console.log(`Máquina: ${escolhaIA}`);
+    console.log(`July: ${escolhaIA}`);
 
     //EXIBINDO O RESULTADO DA RODADA
     if (escolhaU == escolhaIA) {
@@ -114,8 +118,8 @@ while (repete == `s` || repete == `sim`) {
   console.log(`RESULTADO FINAL`);
   console.log();
   console.log(`Você venceu: ${pontosU}`);
-  console.log(`Máquina venceu: ${pontosIA}`);
-  console.log(`Empates: ${empate}`);
+  console.log(`July venceu: ${pontosIA}`);
+  console.log(`Empate: ${empate}`);
   console.log();
 
   if (pontosU == pontosIA) {
