@@ -120,6 +120,8 @@ while (repete == `s` || repete == `sim`) {
   // EXIBINDO O RESULTADO FINAL
   console.log(`RESULTADO FINAL`);
   console.log();
+  console.log(`Rodadas jogadas: ${rodadasT}`);
+  console.log();
   console.log(`Você venceu: ${pontosU}`);
   console.log(`July venceu: ${pontosIA}`);
   console.log(`Empate: ${empate}`);
@@ -128,15 +130,15 @@ while (repete == `s` || repete == `sim`) {
   if (pontosU == pontosIA) {
     console.log(`VOCÊS EMPATARAM :o`);
     console.log();
-    console.log(`Que tal tentar de novo pra definir um vencedor?`);
+    console.log(`Vamos jodar de novo pra definir um vencedor!`);
   } else if (pontosU > pontosIA) {
     console.log(`VOCÊ FOI O GRANDE CAMPEÃO! :D`);
     console.log();
-    console.log(`Uau! Estou impressionada. Será que consegue me vencer novamente?`);
+    console.log(`Uau! Estou impressionada. Aposto que não consegue vencer de novo!`);
   } else {
     console.log(`VOCÊ FOI DERROTADO! :(`);
     console.log();
-    console.log(`Não fique triste. Tente outra vez. Tenho certeza que terá mais sorte.`);
+    console.log(`Não fique triste! Tente outra vez! Tenho certeza que terá mais sorte.`);
   }
   console.log();
 
