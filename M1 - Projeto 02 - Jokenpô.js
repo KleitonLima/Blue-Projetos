@@ -8,7 +8,7 @@ let elementos = [, `PEDRA`, `PAPEL`, `TESOURA`],
   repete = `s`,
   conhece,
   escolhaU,
-  escolhaIA
+  escolhaIA;
 
 console.log(`#Jokenpô#`);
 console.log();
