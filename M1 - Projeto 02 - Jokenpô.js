@@ -3,9 +3,12 @@ const prompt = require("prompt-sync")();
 
 // JOKENPÔ
 
-// VARIAVÉIS    // USEI UMA VÍRGULA SEM NADA ANTES PRA INVÁLIDAR O ÍNDICE "0", SENDO POSSÍVEL SELECIONAR SOMENTE DE 1 Á 3
-let repete = `s`,
-  conhece;
+// VARIAVÉIS GLOBAIS   // USEI UMA VÍRGULA SEM NADA ANTES PRA INVÁLIDAR O ÍNDICE "0", SENDO POSSÍVEL SELECIONAR SOMENTE DE 1 Á 3
+let elementos = [, `PEDRA`, `PAPEL`, `TESOURA`],
+  repete = `s`,
+  conhece,
+  escolhaU,
+  escolhaIA;
 
 console.log(`#Jokenpô#`);
 console.log();
@@ -53,15 +56,12 @@ if (conhece == `nao` || conhece == `n`) {
 while (repete == `s` || repete == `sim`) {
   console.clear();
 
-  // VARIÁVEIS
-  let elementos = [, `PEDRA`, `PAPEL`, `TESOURA`],
-    pontosU = 0,
+  // VARIAVÉIS
+  let pontosU = 0,
     pontosIA = 0,
     empate = 0,
     rodadasT = 0,
-    rodadaA = 0,
-    escolhaU,
-    escolhaIA;
+    rodadaA = 0;
 
   // CONDIÇÃO PARA ACEITAR SOMENTE NÚMEROS NA QUANTIDADE DE RODADAS
   do {
