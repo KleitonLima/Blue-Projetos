@@ -14,16 +14,19 @@ console.log();
 console.log(`Eu sou a July e irei jogar com você!`);
 console.log();
 
-while (conhece != `sim` && conhece != `s` && conhece != `nao` && conhece != `n`) {
+do {
   conhece = prompt(console.log(`Antes de continuar, preciso saber se você conhece o jogo Jokenpô?`)).toLowerCase();
   console.clear();
-}
+} while (conhece != `sim` && conhece != `s` && conhece != `nao` && conhece != `n`);
 
 if (conhece == `nao` || conhece == `n`) {
-  console.log(`Tudo bem!`);
-  console.log(`Pelo nome Jokenpô você pode não conhecer mas, tenho quase certeza que conhece`);
-  conhece = prompt(console.log(`pelo nome PEDRA, PAPEL e TESOURA, não conhece?`)).toLowerCase();
-  console.clear();
+  do {
+    console.log(`Tudo bem!`);
+    console.log(`Pelo nome Jokenpô você pode não conhecer mas, tenho quase certeza que conhece`);
+    conhece = prompt(console.log(`pelo nome PEDRA, PAPEL e TESOURA, não conhece?`)).toLowerCase();
+    console.clear();
+  } while (conhece != `sim` && conhece != `s` && conhece != `nao` && conhece != `n`);
+
   if (conhece == `nao` || conhece == `n`) {
     console.clear();
     console.log(`Então, deixa eu te explicar.`);
