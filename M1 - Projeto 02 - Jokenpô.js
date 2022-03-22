@@ -18,7 +18,7 @@ console.log(`Eu sou a July e irei jogar com você!`);
 console.log();
 
 do {
-  conhece = prompt(console.log(`Antes de continuar, preciso saber se você conhece o jogo Jokenpô?`)).toLowerCase();
+  conhece = prompt(`Antes de continuar, preciso saber se você conhece o jogo Jokenpô? `).toLowerCase();
   console.clear();
 } while (conhece != `sim` && conhece != `s` && conhece != `nao` && conhece != `n`);
 
@@ -26,7 +26,7 @@ if (conhece == `nao` || conhece == `n`) {
   do {
     console.log(`Tudo bem!`);
     console.log(`Pelo nome Jokenpô você pode não conhecer mas, tenho quase certeza que conhece`);
-    conhece = prompt(console.log(`pelo nome PEDRA, PAPEL e TESOURA, não conhece?`)).toLowerCase();
+    conhece = prompt(`pelo nome PEDRA, PAPEL e TESOURA, não conhece? `).toLowerCase();
     console.clear();
   } while (conhece != `sim` && conhece != `s` && conhece != `nao` && conhece != `n`);
 
@@ -40,16 +40,16 @@ if (conhece == `nao` || conhece == `n`) {
     console.log();
     console.log(`Vamos começar a entender na prática.`);
     console.log();
-    prompt(console.log(`Pressione ENTER para continuar...`));
+    prompt(`Pressione ENTER para continuar... `);
   } else {
     console.log(`Perfeito! Então, vamos começar!`);
     console.log();
-    prompt(console.log(`Pressione ENTER para continuar...`));
+    prompt(`Pressione ENTER para continuar... `);
   }
 } else {
   console.log(`Perfeito! Então, vamos começar!`);
   console.log();
-  prompt(console.log(`Pressione ENTER para continuar...`));
+  prompt(`Pressione ENTER para continuar... `);
 }
 
 // CONDIÇÃO PARA JOGAR NOVAMENTE
@@ -134,7 +134,7 @@ while (repete == `s` || repete == `sim`) {
   } else if (pontosU > pontosIA) {
     console.log(`VOCÊ FOI O GRANDE CAMPEÃO! :D`);
     console.log();
-    console.log(`Uau! Estou impressionada. Aposto que não consegue vencer de novo!`);
+    console.log(`Uau! Estou impressionada! Aposto que não consegue me vencer de novo!`);
   } else {
     console.log(`VOCÊ FOI DERROTADO! :(`);
     console.log();
