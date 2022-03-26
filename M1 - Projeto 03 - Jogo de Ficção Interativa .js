@@ -13,8 +13,11 @@ let personagem = {
   defesa: function () {
     return this.resistencia * this.energia;
   },
+  ataqueComLivera: function () {
+    return this.ataque() * 100;
+  },
 };
-let espada = personagem.ataque() * 100;
+
 
 let dragao = {
   forca: 30,
@@ -27,5 +30,6 @@ let dragao = {
     return this.resistencia * this.energia;
   },
 };
+
 
 console.log();
