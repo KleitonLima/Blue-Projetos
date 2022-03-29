@@ -6,21 +6,21 @@ const prompt = require("prompt-sync")();
 // JOGO DE FICÇÃO INTERATIVA
 
 // VARIAVÉIS
-let destino, emboscada, escolha, jogada, quantidadeInimigos, sorte;
+let destino,
+  emboscada,
+  escolha,
+  jogada,
+  quantidadeInimigos,
+  princesa = 0,
+  livera = 0,
+  missera = 0,
+  labuge = 0;
 
 // OBJETOS
 let tempo = {
   dia: 1,
   hora: 5,
   minuto: 0,
-  mostraTempo: function (tempo) {
-    if (this.hora >= 24) {
-      (this.hora -= 24), this.dia++;
-    } else if (this.minuto >= 60) {
-      (this.minuto -= 60), this.hora++;
-    }
-    console.log(`${this.hora}h:${this.minuto}m`);
-  },
 };
 
 let personagem = {
@@ -51,46 +51,96 @@ let dragao = {
 };
 
 // FUNÇÕES
+function mostraTempo() {
+  if (tempo.hora >= 24) {
+    (tempo.hora -= 24), tempo.dia++;
+  } else if (tempo.minuto >= 60) {
+    (tempo.minuto -= 60), tempo.hora++;
+  }
+  console.log(`Dia ${tempo.dia} - ${tempo.hora}h:${tempo.minuto}m`);
+}
+function perdeVida(dano) {
+  return (personagem.energia -= dano);
+}
+function passaHora(addhora) {
+  return (tempo.hora += addhora);
+}
+function passaMinuto(addminuto) {
+  return (tempo.minuto += addminuto);
+}
+function mostraVida() {
+  console.log(`Energia: ${personagem.energia}`);
+}
 function dado() {
   return Math.floor(Math.random() * 6 + 1);
 }
+function continuar() {
+  prompt(`Pressione ENTER para continuar...`);
+}
 
-// ESCOLHA DO DESTINO
-for (personagem.energia > 0; ; ) {
+function descanso() {
+  if (personagem.energia < 15) {
+    do {
+      console.log(`Energia: ${personagem.energia}`);
+      console.log(`Você deseja descansar?`);
+      escolha = prompt().toLowerCase();
+      console.clear();
+      if (escolha == `s` || escolha == `sim`) {
+        passaHora(15 - personagem.energia);
+        personagem.energia = 15;
+        console.clear();
+      }
+    } while (escolha != `s` && escolha != `n` && escolha != `sim` && escolha != `nao`);
+  }
+}
+function escolhaDestino() {
   do {
     console.clear();
-    tempo.mostraTempo();
-    console.log(`Energia: ${personagem.energia}`);
+    mostraTempo();
+    mostraVida();
     console.log(`Por onde você deseja ir? `);
-    console.log(`(1) Resgatar a prícesa Arlim?`);
-    console.log(`(2) Roubar a espada Lívera?`);
-    console.log(`(3) Enfrentar o dragão Míssera?`);
-    console.log(`(4) Buscar a pedra mística de Labuge?`);
+    if (princesa < 1) {
+      console.log(`(1) Resgatar a prícesa Arlim?`);
+    }
+    if (livera < 1) {
+      console.log(`(2) Roubar a espada Lívera?`);
+    }
+    if (missera < 1) {
+      console.log(`(3) Enfrentar o dragão Míssera?`);
+    }
+    if (labuge < 1) {
+      console.log(`(4) Buscar a pedra mística de Labuge?`);
+    }
     destino = +prompt();
   } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 4);
+}
+
+// ESCOLHA DO DESTINO
+for (;;) {
+  escolhaDestino();
 
   // DESTINO 1
   if (destino == 1) {
     console.clear();
-    tempo.mostraTempo();
+    mostraTempo();
     console.log(`Muito bem! Siga por este caminho e chegará até o cativeiro da príncesa. Cuidado no caminho e boa sorte!`);
     console.log();
-    +prompt(`Pressione ENTER para continuar...`);
+    continuar();
     console.clear();
 
     // ALEATORIEDADE
     emboscada = dado();
 
     if (emboscada % 2 == 0) {
-      quantidadeInimigos = Math.floor(Math.random() * 4 + 2);
+      quantidadeInimigos = Math.floor(Math.random() * 3 + 2);
       console.clear();
-      tempo.hora += 1;
-      tempo.mostraTempo();
+      passaHora(1);
+      mostraTempo();
       console.log(`Emboscada!`);
       console.log(`Você deu de cara com ${quantidadeInimigos} Argadans. Não há como fugir, só te resta lutar.`);
 
-      for (i = quantidadeInimigos; i >= 1; tempo.minuto += 5) {
-        console.log(`Energia: ${personagem.energia}`);
+      for (i = quantidadeInimigos; i >= 1; passaMinuto(5)) {
+        mostraVida();
 
         do {
           escolha = +prompt(`Deseja (1) ATACAR ou (2) DEFENDER: `);
@@ -103,57 +153,46 @@ for (personagem.energia > 0; ; ) {
         if (escolha == 1) {
           if (jogada > emboscada) {
             i--;
-            tempo.mostraTempo();
+            mostraTempo();
             console.log(`Você derrotou um inimigo, falta ${i}`);
-            personagem.energia -= 1;
+            perdeVida(1);
           } else if (jogada == emboscada) {
-            tempo.mostraTempo();
+            mostraTempo();
             console.log(`Niguém foi ferido!`);
-            personagem.energia -= 1;
+            perdeVida(1);
           } else {
-            tempo.mostraTempo();
-            personagem.energia -= 2;
+            mostraTempo();
+            perdeVida(2);
             console.log(`Você recebeu um ataque!`);
           }
         }
         if (escolha == 2) {
           if (jogada >= emboscada) {
-            tempo.mostraTempo();
+            mostraTempo();
             console.log(`Você defendeu o ATAQUE INIMIGO`);
-            personagem.energia -= 1;
+            perdeVida(1);
           } else {
-            tempo.mostraTempo();
-            personagem.energia -= 2;
+            mostraTempo();
+            perdeVida(2);
             console.log(`Você recebeu um ataque!`);
           }
         }
       }
 
       console.clear();
-      tempo.mostraTempo();
+      mostraTempo();
       console.log(`Você derrotou todos os inimigos.`);
 
-      if (personagem.energia < 10) {
-        do {
-          console.log(`Energia: ${personagem.energia}`);
-          console.log(`Você deseja descansar?`);
-          escolha = prompt().toLowerCase();
-          console.clear();
-          if (escolha == `s` || escolha == `sim`) {
-            tempo.hora += 10 - personagem.energia;
-            personagem.energia = 15;
-            console.clear();
-          }
-        } while (escolha != `s` && escolha != `n` && escolha != `sim` && escolha != `nao`);
-      }
-      tempo.hora += 1;
+      descanso();
+
+      passaHora(1);
     } else {
       console.clear;
-      tempo.hora += 2;
+      passaHora(2);
     }
 
-    tempo.mostraTempo();
-    console.log(`Energia: ${personagem.energia}`);
+    mostraTempo();
+    mostraVida(1);
 
     do {
       console.log(`Você chegou ao cativeiro! Você contou cerca de 15 soldados Argadans. Como deseja agir?`);
@@ -161,15 +200,61 @@ for (personagem.energia > 0; ; ) {
       console.log(`(2) ATACAR OS GUARDAS`);
       console.log(`(3) INVADIR SORRATEIRAMENTE ATÉ ENCONTRAR A PRINCESA`);
       escolha = +prompt();
-    } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 3);
+    } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
 
     if (escolha == 1) {
-      console.log(`Você se entregou e foi preso! Junto com a princesa conseguiram fugir e voltaram pra cidade!`);
-      tempo.hora += 4;
-    } else if ( escolha == 2) {}
+      console.clear();
+      console.log(`Você se entregou e foi preso! Na prisão a princesa te conta o plano de fuga dela.`);
+      console.log(`Juntos conseguiram fugir e voltaram para a cidade!`);
+      console.log();
+      continuar();
+      passaHora(4);
+      princesa++;
+    } else if (escolha == 2) {
+      console.log(`Você travou um intesna batalha contra os Argadans, mas eles eram muitos e você acabou morto!`);
+      console.log();
+      console.log(`#GAME OVER#`);
+      console.log();
+      break;
+    } else {
+      jogada = dado();
+      if (jogada % 2 == 0) {
+        console.log(`Você conseguiu resgatar a princesa sem que ninguém percebesse. Juntos, vocês voltaram pra cidade...`);
+        passaHora(3);
+        console.log();
+        continuar();
+        princesa++;
+      } else {
+        do {
+          console.clear();
+          mostraVida();
+          console.log(`VOCÊ FOI AVISTADO! O QUE FAZER?`);
+          console.log(`(1) FUGIR DE VOLTA PRA CIDADE`);
+          console.log(`(2) SE ENTREGAR E DEIXAR SER PRESO`);
+          console.log(`(3) LUTAR`);
+          escolha = +prompt();
+        } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 4);
+        if (escolha == 1) {
+          console.log(`Você conseguiu fugir de volta para a cidade!`);
+          continuar();
+        } else if (escolha == 2) {
+          mostraTempo();
+          passaHora(4);
+          console.clear();
+          console.log(`Você se entregou e foi preso! Ao encontrar a princesa na prisão você descobre que ela já tinha um plano de fuga.`);
+          console.log(`Juntos, vocês conseguem fugir e voltar a cidade.`);
+          console.log();
+          continuar();
+          princesa++;
+        } else {
+          console.clear();
+          console.log(`Você travou uma intensa batalha mas, eles eram muitos e você foi morto!`);
+          console.log();
+          console.log(`#GAME OVER#`);
+          console.log();
+          break;
+        }
+      }
+    }
   }
-
-  break;
 }
-
-console.log();
