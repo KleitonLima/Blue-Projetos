@@ -27,10 +27,10 @@ let personagem = {
   resistencia: 3,
   energia: 20,
   vida: 10,
-  ataque: function () {
+  ataque: () => {
     return this.forca * this.energia;
   },
-  defesa: function () {
+  defesa: () => {
     return this.resistencia * this.energia;
   },
   ataqueComLivera: function () {
@@ -42,59 +42,26 @@ let dragao = {
   resistencia: 30,
   energia: 100,
   vida: 100,
-  ataque: function () {
+  ataque: () => {
     return this.forca * this.energia;
   },
-  defesa: function () {
+  defesa: () => {
     return this.resistencia * this.energia;
   },
 };
 
 // FUNÇÕES
-function mostraTempo() {
+mostraTempo = () => {
   if (tempo.hora >= 24) {
     (tempo.hora -= 24), tempo.dia++;
   } else if (tempo.minuto >= 60) {
     (tempo.minuto -= 60), tempo.hora++;
+    console.log(`Vida: ${personagem.vida}`);
+    
   }
   console.log(`Dia ${tempo.dia} - ${tempo.hora}h:${tempo.minuto}m`);
-}
-function perdeVida(dano) {
-  return (personagem.vida -= dano);
-}
-function perdeEnergia(esforco) {
-  return (personagem.energia -= esforco);
-}
-function passaHora(addhora) {
-  return (tempo.hora += addhora);
-}
-function passaMinuto(addminuto) {
-  return (tempo.minuto += addminuto);
-}
-function mostraVida() {
-  console.log(`Vida: ${personagem.vida}`);
-}
-function dado() {
-  return Math.floor(Math.random() * 6 + 1);
-}
-function continuar() {
-  prompt(`Pressione ENTER para continuar...`);
-}
-function status() {
-  mostraTempo(), mostraVida();
-}
-function morte() {
-  if (personagem.vida <= 0) {
-    console.clear();
-    console.log(`Você foi morto!`);
-    console.log();
-    console.log(`#GAME OVER#`);
-    while (true) {
-      break;
-    }
-  }
-}
-function descanso() {
+};
+descanso = () => {
   if (personagem.vida < 15) {
     do {
       console.log(`Você deseja descansar?`);
@@ -107,26 +74,52 @@ function descanso() {
       }
     } while (escolha != `s` && escolha != `n` && escolha != `sim` && escolha != `nao`);
   }
+};
+
+perdeVida = (dano) => {
+  return (personagem.vida -= dano);
+};
+perdeEnergia = (esforco) => {
+  return (personagem.energia -= esforco);
+};
+passaHora = (addhora) => {
+  return (tempo.hora += addhora);
+};
+passaMinuto = (addminuto) => {
+  return (tempo.minuto += addminuto);
+};
+mostraVida = () => {
+  console.log(`Vida: ${personagem.vida}`);
 }
-function escolhaDestino() {
+dado = () => {
+  return Math.floor(Math.random() * 6 + 1);
+}
+continuar = () => {
+  prompt(`Pressione ENTER para continuar...`);
+}
+status = () => {
+  mostraTempo(), mostraVida();
+}
+escolhaDestino = () => {
   do {
     console.clear();
     status();
     console.log(`Por onde você deseja ir? `);
+    let escolhaDestino = [, `(1) Resgatar a príncesa Arlim`, `(2) Roubar a espada Lívera`, `(3) Enfrentar o dragão Míssera`, `(4) Buscar a pedra mística de Labuge`, `(5) Dormir`];
     if (princesa < 1) {
-      console.log(`(1) Resgatar a príncesa Arlim`);
+      console.log(escolhaDestino[1]);
     }
     if (livera < 1) {
-      console.log(`(2) Roubar a espada Lívera`);
+      console.log(escolhaDestino[2]);
     }
     if (missera < 1) {
-      console.log(`(3) Enfrentar o dragão Míssera`);
+      console.log(escolhaDestino[3]);
     }
     if (labuge < 1) {
-      console.log(`(4) Buscar a pedra mística de Labuge`);
+      console.log(escolhaDestino[4]);
     }
     if (tempo.hora >= 17 || tempo.hora < 5) {
-      console.log(`(5) Dormir`);
+      console.log(escolhaDestino[5]);
     }
     destino = +prompt();
   } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 5);
@@ -197,7 +190,6 @@ while (true) {
           console.log(`Você foi morto!`);
           console.log();
           console.log(`#GAME OVER#`);
-          console.log();
           break;
         }
       }
@@ -206,7 +198,6 @@ while (true) {
         console.log(`Você foi morto!`);
         console.log();
         console.log(`#GAME OVER#`);
-        console.log();
         break;
       }
 
