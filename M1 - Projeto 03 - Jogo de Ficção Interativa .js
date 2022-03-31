@@ -51,15 +51,22 @@ let dragao = {
 };
 
 // FUNÇÕES
+mostraStatus = () => {
+  if (tempo.hora >= 24) {
+    (tempo.hora -= 24), tempo.dia++;
+  } else if (tempo.minuto >= 60) {
+    (tempo.minuto -= 60), tempo.hora++;
+    console.log(`Vida: ${personagem.vida}`);
+  }
+  console.log(`Dia ${tempo.dia} - ${tempo.hora}h:${tempo.minuto}m`);
+};
 mostraTempo = () => {
   if (tempo.hora >= 24) {
     (tempo.hora -= 24), tempo.dia++;
   } else if (tempo.minuto >= 60) {
     (tempo.minuto -= 60), tempo.hora++;
     console.log(`Vida: ${personagem.vida}`);
-    
   }
-  console.log(`Dia ${tempo.dia} - ${tempo.hora}h:${tempo.minuto}m`);
 };
 descanso = () => {
   if (personagem.vida < 15) {
@@ -90,20 +97,18 @@ passaMinuto = (addminuto) => {
 };
 mostraVida = () => {
   console.log(`Vida: ${personagem.vida}`);
-}
+};
 dado = () => {
   return Math.floor(Math.random() * 6 + 1);
-}
+};
 continuar = () => {
   prompt(`Pressione ENTER para continuar...`);
-}
-status = () => {
-  mostraTempo(), mostraVida();
-}
+};
+
 escolhaDestino = () => {
   do {
     console.clear();
-    status();
+    mostraStatus();
     console.log(`Por onde você deseja ir? `);
     let escolhaDestino = [, `(1) Resgatar a príncesa Arlim`, `(2) Roubar a espada Lívera`, `(3) Enfrentar o dragão Míssera`, `(4) Buscar a pedra mística de Labuge`, `(5) Dormir`];
     if (princesa < 1) {
@@ -123,7 +128,7 @@ escolhaDestino = () => {
     }
     destino = +prompt();
   } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 5);
-}
+};
 
 // ESCOLHA DO DESTINO
 while (true) {
@@ -148,7 +153,7 @@ while (true) {
       quantidadeInimigos = Math.floor(Math.random() * 3 + 2);
       console.clear();
       passaHora(1);
-      status();
+      mostraStatus();
       console.log(`Emboscada!`);
       console.log(`Você deu de cara com ${quantidadeInimigos} Argadans. Não há como fugir, só te resta lutar.`);
 
@@ -164,24 +169,24 @@ while (true) {
         if (escolha == 1) {
           if (jogada >= emboscada) {
             i--;
-            status();
+            mostraStatus();
             console.log(`Você derrotou um inimigo, falta ${i}`);
             perdeEnergia(1);
           } else {
             perdeEnergia(1);
             perdeVida(2);
-            status();
+            mostraStatus();
             console.log(`O inimigo defendeu seu ataque e contra atacou!`);
           }
         }
         if (escolha == 2) {
           if (jogada >= emboscada) {
             perdeEnergia(1);
-            status();
+            mostraStatus();
             console.log(`Você defendeu o ataque inimigo.`);
           } else {
             perdeVida(2);
-            status();
+            mostraStatus();
             console.log(`Você recebeu um ataque!`);
           }
         }
@@ -202,7 +207,7 @@ while (true) {
       }
 
       console.clear();
-      status();
+      mostraStatus();
       console.log(`Você derrotou todos os inimigos.`);
 
       descanso();
@@ -215,7 +220,7 @@ while (true) {
 
     do {
       console.clear();
-      status();
+      mostraStatus();
       console.log(`Você chegou ao cativeiro! Você contou cerca de 15 soldados Argadans. Como deseja agir?`);
       console.log(`(1) DEIXAR SER PRESO E PLANEJAR UMA FULGA COM A PRINCESA NA PRISÃO`);
       console.log(`(2) ATACAR OS GUARDAS`);
@@ -225,7 +230,7 @@ while (true) {
 
     if (escolha == 1) {
       console.clear();
-      status();
+      mostraStatus();
       passaHora(4);
       console.log(`Você se entregou e foi preso! Na prisão a princesa te conta o plano de fuga dela.`);
       console.log(`Juntos conseguiram fugir e voltaram para a cidade!`);
@@ -248,7 +253,7 @@ while (true) {
       if (jogada % 2 == 0) {
         console.clear();
         passaHora(3);
-        status();
+        mostraStatus();
         console.log(`Você conseguiu resgatar a princesa sem que ninguém percebesse. Juntos, vocês voltaram pra cidade...`);
         console.log();
         continuar();
@@ -257,7 +262,7 @@ while (true) {
         do {
           console.clear();
           passaHora(1);
-          status();
+          mostraStatus();
           console.log(`VOCÊ FOI AVISTADO! O QUE FAZER?`);
           console.log(`(1) FUGIR DE VOLTA PRA CIDADE`);
           console.log(`(2) SE ENTREGAR E DEIXAR SER PRESO`);
@@ -267,14 +272,14 @@ while (true) {
         if (escolha == 1) {
           console.clear();
           passaHora(2);
-          status();
+          mostraStatus();
           console.log(`Você conseguiu fugir de volta para a cidade!`);
           console.log();
           continuar();
         } else if (escolha == 2) {
           console.clear();
           passaHora(4);
-          status();
+          mostraStatus();
           console.log(`Você se entregou e foi preso! Ao encontrar a princesa na prisão você descobre que ela já tinha um plano de fuga.`);
           console.log(`Juntos, vocês conseguem fugir e voltar a cidade.`);
           console.log();
