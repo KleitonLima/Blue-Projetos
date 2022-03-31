@@ -323,6 +323,7 @@ while (true) {
         console.log(`Você correu muito rápido... só não, mais rápido que a manada que te pisoteou.`);
         gameOver();
         break;
+      }
     }
   }
 
