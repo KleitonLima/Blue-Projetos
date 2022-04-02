@@ -322,7 +322,6 @@ while (true) {
       }
     }
   } else if (destino == 2) {
-    // DESTINO 2
     if (livera > 0) {
       mostraStatus();
       console.log(`Você já roubou a espada! Siga nas outras missões.`);
@@ -483,6 +482,16 @@ while (true) {
           break;
         }
       }
+    }
+  } else if (destino == 3) {
+    // DESTINO 3
+    if (arlim == 0) {
+      do {
+        mostraStatus();
+        console.log(`A princesa Arlim é a única conhecedora do caminho correto para encontrar a pedra de Labuge.`);
+        console.log(`Sem ela, será pior que procurar uma agulha em um palheiro. Deseja prosseguir, mesmo assim?`);
+        escolha = +prompt();
+      } while (escolha != `s` && escolha != `n` && escolha != `sim` && escolha != `nao`);
     }
   }
 
