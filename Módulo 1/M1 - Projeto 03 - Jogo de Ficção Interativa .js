@@ -151,25 +151,22 @@ while (true) {
 
   // DESTINO 1
   if (destino == 1) {
-    console.clear();
-    mostraTempo();
+    mostraStatus();
     console.log(`Muito bem! Siga por este caminho e chegará até o cativeiro da princesa. Cuidado no caminho e boa sorte!`);
     console.log();
     continuar();
 
     // ALEATORIEDADE
     emboscada = dado();
+    quantidadeInimigos = Math.floor(Math.random() * 3 + 2);
 
     if (emboscada % 2 == 0 && livera == 0) {
-      console.clear();
-      quantidadeInimigos = Math.floor(Math.random() * 3 + 2);
-      console.clear();
       passaHora(1);
       mostraStatus();
       console.log(`Emboscada!`);
       console.log(`Você deu de cara com ${quantidadeInimigos} Argadans. Não há como fugir, só te resta lutar.`);
 
-      for (i = quantidadeInimigos; i >= 1; passaMinuto(5)) {
+      for (i = quantidadeInimigos; i > 0; passaMinuto(5)) {
         do {
           escolha = +prompt(`Deseja (1) ATACAR ou (2) DEFENDER: `);
           console.clear();
@@ -210,15 +207,12 @@ while (true) {
         gameOver();
         break;
       }
-
-      console.clear();
       mostraStatus();
       console.log(`Você derrotou todos os inimigos.`);
       continuar();
       descanso();
       passaHora(1);
-    } else if (emboscada % 2 == 0 && livera != 0) {
-      quantidadeInimigos = Math.floor(Math.random() * 3 + 2);
+    } else if (emboscada % 2 == 0 && livera > 0) {
       passaHora(1);
       mostraStatus();
       console.log(`Emboscada!`);
@@ -233,21 +227,20 @@ while (true) {
     }
 
     do {
-      console.clear();
+      listaEscolha = [, `(1) DEIXAR SER PRESO E PLANEJAR UMA FUGA COM A PRINCESA NA PRISÃO`, `(2) ATACAR OS GUARDAS`, `(3) INVADIR SORRATEIRAMENTE ATÉ ENCONTRAR A PRINCESA`];
       mostraStatus();
-      console.log(`Você chegou ao cativeiro! Você contou cerca de 15 soldados Argadans. Como deseja agir?`);
-      console.log(`(1) DEIXAR SER PRESO E PLANEJAR UMA FUGA COM A PRINCESA NA PRISÃO`);
-      console.log(`(2) ATACAR OS GUARDAS`);
-      console.log(`(3) INVADIR SORRATEIRAMENTE ATÉ ENCONTRAR A PRINCESA`);
+      console.log(`Você chegou ao cativeiro! Você contou cerca de 30 soldados Argadans. Como deseja agir?`);
+      console.log(listaEscolha[1]);
+      console.log(listaEscolha[2]);
+      console.log(listaEscolha[3]);
       escolha = +prompt();
     } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
 
     if (escolha == 1) {
-      console.clear();
       mostraStatus();
       passaHora(4);
-      console.log(`Você se entregou e foi preso! Na prisão a princesa te conta o plano de fuga dela.`);
-      console.log(`Juntos conseguiram fugir e voltaram para a cidade!`);
+      console.log(`Você se entregou e foi preso! Na prisão, a princesa Arlim te conta o plano de fuga dela.`);
+      console.log(`Juntos, vocês conseguem fugir e voltar para a cidade!`);
       console.log();
       continuar();
       arlim++;
@@ -258,59 +251,64 @@ while (true) {
         console.log(`Você travou um intensa batalha contra os Argadans, mas eles eram muitos e você acabou morto!`);
         gameOver();
         break;
-      } else {
+      } else if (livera > 0) {
         mostraStatus();
         passaHora(2);
         passaMinuto(30);
-        console.log(`Com a Lívera em mãos, os guardas não tiveram chance contra você, que derrotou todos os inimigos`);
-        console.log(`e salvou Arlim da prisão, voltando com ela para a cidade.`);
+        console.log(`Com a Lívera em mãos, os guardas não tiveram chance contra você, que derrotou todos eles`);
+        console.log(`e salvou a princesa Arlim da prisão, voltando com ela para a cidade.`);
         continuar();
         arlim++;
       }
-    } else {
+    } else if (escolha == 3) {
       jogada = dado();
       if (jogada % 2 == 0) {
-        console.clear();
         passaHora(3);
         mostraStatus();
-        console.log(`Você conseguiu resgatar a princesa sem que ninguém percebesse. Juntos, vocês voltaram pra cidade...`);
+        console.log(`Você conseguiu resgatar a princesa sem que ninguém percebesse. Juntos, vocês voltaram para cidade...`);
         console.log();
         continuar();
         arlim++;
       } else {
         do {
-          console.clear();
+          listaEscolha = [, `(1) FUGIR DE VOLTA PRA CIDADE`, `(2) SE ENTREGAR E DEIXAR SER PRESO`, `(3) LUTAR`];
           passaHora(1);
           mostraStatus();
           console.log(`VOCÊ FOI AVISTADO! O QUE FAZER?`);
-          console.log(`(1) FUGIR DE VOLTA PRA CIDADE`);
-          console.log(`(2) SE ENTREGAR E DEIXAR SER PRESO`);
-          console.log(`(3) LUTAR`);
+          console.log(listaEscolha[1]);
+          console.log(listaEscolha[2]);
+          console.log(listaEscolha[3]);
           escolha = +prompt();
-        } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 4);
+        } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
         if (escolha == 1) {
-          console.clear();
           passaHora(2);
           mostraStatus();
           console.log(`Você conseguiu fugir de volta para a cidade!`);
           console.log();
           continuar();
         } else if (escolha == 2) {
-          console.clear();
           passaHora(4);
           mostraStatus();
-          console.log(`Você se entregou e foi preso! Ao encontrar a princesa na prisão você descobre que ela já tinha um plano de fuga.`);
+          console.log(`Você se entregou e foi preso! Ao encontrar a princesa Arlim na prisão você descobre que ela já tinha um plano de fuga.`);
           console.log(`Juntos, vocês conseguem fugir e voltar a cidade.`);
           console.log();
           continuar();
           arlim++;
-        } else {
-          console.clear();
-          passaHora(1);
-          mostraTempo();
-          console.log(`Você travou uma intensa batalha mas, eles eram muitos e você foi morto!`);
-          gameOver();
-          break;
+        } else if (escolha == 3) {
+          if (livera == 0) {
+            passaHora(1);
+            mostraTempo();
+            console.log(`Você travou uma intensa batalha mas, eles eram muitos e você foi morto!`);
+            gameOver();
+            break;
+          } else if (livera > 0) {
+            passaMinuto(30);
+            mostraStatus();
+            passaHora(2);
+            console.log(`Você acabou com todos os guardas e resgatou a princesa Arlim. Juntos, voltaram pra cidade.`);
+            continuar();
+            arlim++;
+          }
         }
       }
     }
@@ -374,26 +372,41 @@ while (true) {
     }
     do {
       mostraStatus();
+      listaEscolha = [
+        ,
+        `(1) Atacar quem aparecer pela frente...`,
+        `(2) Dar uma volta, buscando um meio de entrar sem ser visto...`,
+        `(3) Se entregar e torcer pra ser levado para próximo da espada e então planejar algo para roubá-la...`,
+      ];
       console.log(`Você chegou a base! Há tantos guardas que você não conseguiu contar todos. Parou no 50.`);
       console.log(`Como você deseja agir?`);
+      console.log(listaEscolha[1]);
+      console.log(listaEscolha[2]);
+      console.log(listaEscolha[3]);
       console.log();
-      console.log(`(1) Atacar quem aparecer pela frente...`);
-      console.log(`(2) Dar uma volta, buscando um meio de entrar sem ser visto...`);
-      console.log(`(3) Se entregar e torcer pra ser levado para próximo da espada e então planejar algo para roubá-la...`);
       escolha = +prompt();
     } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
     if (escolha == 1) {
-      mostraTempo();
-      console.log(`Corajoso da sua parte, devo admitir. Mas, sem chance de derrotar mais de 50 Argadans sem a espada de Lívera.`);
-      gameOver();
-      break;
+      if (livera == 0) {
+        mostraTempo();
+        console.log(`Corajoso da sua parte, devo admitir. Mas, sem chance de derrotar mais de 50 Argadans sem a espada de Lívera.`);
+        gameOver();
+        break;
+      } else if (livera > 0) {
+        passaHora(1);
+        mostraStatus();
+        console.log(`Você aniquilou todos os guardas só por diversão, porquê, já está em posse da espada de Lívera. Que perverso você é!`);
+        continuar();
+      }
     } else if (escolha == 2) {
-      passaMinuto(40);
-      mostraStatus();
-      quantidadeInimigos = Math.floor(Math.random() * 4 + 2);
-      console.log(`Ao dar a volta, você achou uma brecha entre as pedras do morro, que permitiu que você entrasse até o local da espada.`);
-      console.log(`Há ${quantidadeInimigos} guardas que você terá que lutar!`);
-      console.log();
+      if (livera == 0) {
+        passaMinuto(40);
+        mostraStatus();
+        quantidadeInimigos = Math.floor(Math.random() * 4 + 2);
+        console.log(`Ao dar a volta, você achou uma brecha entre as pedras do morro, que permitiu que você entrasse até o local da espada.`);
+        console.log(`Há ${quantidadeInimigos} guardas que você terá que lutar!`);
+        console.log();
+      }
 
       for (i = quantidadeInimigos; i >= 1; passaMinuto(5)) {
         do {
@@ -447,16 +460,25 @@ while (true) {
     } else if (escolha == 3) {
       jogada = dado();
       if (jogada % 2 == 0) {
-        mostraStatus();
-        passaMinuto(15);
-        console.log(`Você se entregou. Quando os guardas te levava para a prisão, você avistou a espada e num vacilo dos guardas, você conseguiu pegá-la.`);
-        continuar();
-        mostraStatus();
-        passaHora(3);
-        passaMinuto(30);
-        console.log(`Com a Lívera em mãos, você derrotou todos os guardas da base e voltou para a cidade.`);
-        continuar();
-        livera++;
+        if (livera == 0) {
+          mostraStatus();
+          passaMinuto(15);
+          console.log(`Você se entregou. Quando os guardas te levava para a prisão, você avistou a espada e num vacilo dos guardas, você conseguiu pegá-la.`);
+          continuar();
+          mostraStatus();
+          passaHora(3);
+          passaMinuto(30);
+          console.log(`Com a Lívera em mãos, você derrotou todos os guardas da base e voltou para a cidade.`);
+          continuar();
+          livera++;
+        } else if (livera > 0) {
+          passaHora(3);
+          passaMinuto(15);
+          mostraStatus();
+          console.log(`Você fingiu ter se rendido e quando os guardas se aproximaram para retirar a espada de Lívera de sua posse`);
+          console.log(`você os atacou derrotando a todos, somente por diversão. Em seguida, você voltou para a cidade.`);
+          continuar();
+        }
       } else {
         passaMinuto(15);
         mostraTempo();
