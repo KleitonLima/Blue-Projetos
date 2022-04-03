@@ -105,7 +105,6 @@ mostraTempo = () => {
 descanso = () => {
   if (personagem.vida < 15) {
     do {
-      console.clear();
       mostraStatus();
       console.log(`Você deseja descansar?`);
       escolha = prompt().toLowerCase();
@@ -490,8 +489,59 @@ while (true) {
         mostraStatus();
         console.log(`A princesa Arlim é a única conhecedora do caminho correto para encontrar a pedra de Labuge.`);
         console.log(`Sem ela, será pior que procurar uma agulha em um palheiro. Deseja prosseguir, mesmo assim?`);
-        escolha = +prompt();
+        escolha = prompt().toLowerCase();
       } while (escolha != `s` && escolha != `n` && escolha != `sim` && escolha != `nao`);
+      if (escolha == `s` || escolha == `sim`) {
+        mostraStatus();
+        console.log(`Muito bem! Se prefere assim, não vou impedi-lo.`);
+        console.log(`Siga por dentro da floresta, até o precipício. Dizem que a pedra pode ser encontrada nas paredes desse precipício.`);
+        console.log(`Ninguém nunca voltou vivo pra contar a história se é verdade. Boa sorte!`);
+        continuar();
+        passaHora(4);
+        mostraStatus();
+        console.log(`Você chegou ao precipício, passou um bom tempo procurando algum indicio da pedra de Labuge mas, nada encontrou e voltou para a cidade.`);
+        continuar();
+        passaHora(2);
+      }
+    } else if (arlim > 0) {
+      mostraStatus();
+      console.log(`Muito bem! Siga com a princesa e ela te guiará pelo caminho correto!`);
+      continuar();
+      passaHora(2);
+      mostraStatus();
+      console.log(`Chegando a beira do precipício, a princesa começa a se guiar de uma maneira totalmente inacreditável,`);
+      console.log(`até mesmo pra você um explorador tão habilidoso.`);
+      continuar();
+      passaHora(1);
+      passaMinuto(30);
+      mostraStatus();
+      console.log(`Pouco a pouco, vocês vão descendo pela difícil parede do precipício, parando as vezes para a princesa se guiar,`);
+      console.log(`seja lá como ela estivesse fazendo isso!`);
+      continuar();
+      passaHora(1);
+      mostraStatus();
+      console.log(`Chegando ao fim do precipício, guiados, no meio da escuridão, por uma tocha que você acendeu,`);
+      console.log(`vocês chegam a entrada da caverna onde a princesa disse estar a pedra.`);
+      continuar();
+      mostraStatus();
+      console.log(`Você fica fascinado com as escritas e desenhos nas paredes e segue passando a mão nelas, enquanto a princesa segue mais adiante.`);
+      console.log(`Enquanto passava a mão nas paredes, você acaba tocando em uma Eslife, uma animal parecido com uma cobra e ela morde sua mão esquerda.`);
+      continuar();
+      listaEscolha = [, `(1) ARRANCAR A MÃO`, `(2) CHUPAR O LOCAL DA MORDIDA`, `(3) CORRER EM BUSCA DA PRINCESA`];
+      mostraStatus();
+      console.log(`Você precisa decidir rápido o que fazer:`);
+      console.log(`Pode arrancar a mão com o facão pra evitar que, se houver veneno, se espalhe pelo corpo.`);
+      console.log(`Chupar o local da mordida e cuspir o possivel veneno ou correr em busca dá princesa e pedir ajuda.`);
+      continuar();
+      do {
+        mostraStatus();
+        console.log(`O que você decide?`);
+        console.log();
+        console.log(listaEscolha[1]);
+        console.log(listaEscolha[2]);
+        console.log(listaEscolha[3]);
+        escolha = +prompt();
+      } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
     }
   }
 
