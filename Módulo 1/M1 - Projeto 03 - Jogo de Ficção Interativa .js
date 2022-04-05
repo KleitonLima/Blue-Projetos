@@ -13,9 +13,9 @@ let destino,
   quantidadeInimigos,
   manada,
   arlim = 0,
-  livera = 0,
+  livera = 1,
   missera = 0,
-  labuge = 0;
+  labuge = 1;
 
 // OBJETOS
 let tempo = {
@@ -119,7 +119,7 @@ escolhaDestino = () => {
     if (livera < 1) {
       console.log(listaDestino[2]);
     }
-    if (missera < 1) {
+    if (labuge < 1) {
       console.log(listaDestino[3]);
     }
     if (missera < 1) {
@@ -646,6 +646,7 @@ while (true) {
 
   // DESTINO 4
   else if (destino == 4) {
+    escolha = `s`;
     if (livera == 0 && labuge == 0) {
       do {
         mostraStatus();
@@ -658,8 +659,87 @@ while (true) {
         console.log(`Suba por este caminho e chegará a caverna do dragão Míssera! Boa sorte!`);
         continuar();
       }
+    } else if (livera > 0 && labuge == 0) {
+      do {
+        mostraStatus();
+        console.log(`Sua chances de vencer o Míssera aumentam com a Lívera, porém o ideal seria também ter a pedra de Labuge para aumentar sua defesa.`);
+        console.log(`Deseja prosseguir?`);
+        escolha = prompt().toLowerCase();
+      } while (escolha != `s` && escolha != `sim` && escolha != `n` && escolha != `nao`);
+      if (escolha == `s` || escolha == `sim`) {
+        mostraStatus();
+        console.log(`Tudo bem! Mas, não diga que não foi avisado!`);
+        console.log(`Suba por este caminho e chegará a caverna do dragão Míssera! Boa sorte!`);
+        continuar();
+      }
+    } else if (livera == 0 && labuge > 0) {
+      do {
+        mostraStatus();
+        console.log(`Você até vai conseguir se defender do dragão Míserra, porém seus ataques serão fracos contra a ele sem a espada de Lívera.`);
+        console.log(`Deseja continuar?`);
+        escolha = prompt().toLowerCase();
+      } while (escolha != `s` && escolha != `sim` && escolha != `n` && escolha != `nao`);
+      if (escolha == `s` || escolha == `sim`) {
+        mostraStatus();
+        console.log(`Tudo bem! Mas, não diga que não foi avisado!`);
+        console.log(`Suba por este caminho e chegará a caverna do dragão Míssera! Boa sorte!`);
+        continuar();
+      }
+    } else if (livera > 0 && labuge > 0) {
+      mostraStatus();
+      console.log(`Perfeito! Você está pronto para derrotar o Míssera! Seja forte e corajoso nessa batalha.`);
+      continuar();
+      mostraStatus();
+      console.log(`Suba por este caminho e chegará ao covil do dragão Míssera! Boa sorte!`);
+      continuar();
     }
-    console.log();
+    if (escolha == `s` || escolha == `sim`) {
+      passaHora(5);
+      mostraStatus();
+      console.log(`Depois de horas subindo a montanha, finalmente você chega na caverna do dragão Míssera.`);
+      continuar();
+      do {
+        mostraStatus();
+        listaEscolha = [, `(1) Entrar sorrateiramente tentando não acordar o dragão`, `(2) Atraí-lo para fora da caverna`];
+        console.log(`Como deseja agir?`);
+        console.log();
+        console.log(listaEscolha[1]);
+        console.log(listaEscolha[2]);
+        escolha = +prompt();
+      } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 2);
+      if (escolha == 1) {
+        passaMinuto(20);
+        mostraStatus();
+        console.log(`Você entra devagar caverna adentro. Então, você percebe que, por dentro, mais parece um castelo.`);
+        console.log(`Com alguns candelabros e umas fogueiras acesas você vai se guiando e entrando ainda mais.`);
+        continuar();
+        mostraStatus();
+        console.log(`Rápido e repentinamente atrás de você, saindo das sombras uma boca gigante e aberta vem em sua direção.`);
+        continuar();
+        if (labuge == 0) {
+          mostraTempo();
+          console.log(`Sem pedra de Labuge como escudo, você é mastigado e engolido em pedacinhos pelo Míssera.`);
+          gameOver();
+          break;
+        } else if (labuge > 0) {
+          mostraStatus();
+          console.log(`Com a pedra e Labuge, você cria uma bola escudo ao seu redor que te protege da mordida mortal do Míssera.`);
+          continuar();
+          if (livera == 0) {
+            mostraStatus();
+            console.log(`O Míssera continua mordendo so escudo ao seu redor. Cospe fogo enquanto morde e vai destruindo o escudo pouco a pouco.`);
+            console.log(`Sem a Lívera para atacá-lo só te resta esperar que ele solte... o que não acontece.`);
+            continuar();
+            mostraTempo();
+            console.log(`Depois de dezenas de tentativas sem descanso, ele consegue quebrar uma parte do escudo, fazendo com que entre fogo e te queime,`);
+            console.log(`até você não conseguir segurar mais o escudo Labuge e é devorado.`);
+          } else if (livera > 0) {
+            mostraStatus();
+            console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e levanta dentro da sua caverna.`);
+          }
+        }
+      }
+    }
   }
 
   // DESTINO 5
