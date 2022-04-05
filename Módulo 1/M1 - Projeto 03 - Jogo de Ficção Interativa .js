@@ -731,11 +731,15 @@ while (true) {
             console.log(`Sem a Lívera para atacá-lo só te resta esperar que ele solte... o que não acontece.`);
             continuar();
             mostraTempo();
-            console.log(`Depois de dezenas de tentativas sem descanso, ele consegue quebrar uma parte do escudo, fazendo com que entre fogo e te queime,`);
-            console.log(`até você não conseguir segurar mais o escudo Labuge e é devorado.`);
+            console.log(`Depois de dezenas de tentativas sem descanso, Míssera consegue quebrar uma parte do escudo, fazendo com que entre fogo e te queime,`);
+            console.log(`até você não conseguir mais segurar o escudo Labuge e é devorado.`);
+            gameOver();
+            break;
           } else if (livera > 0) {
             mostraStatus();
-            console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e levanta dentro da sua caverna.`);
+            console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e se levanta dentro da sua caverna.`);
+            console.log(`Você contempla a grandiosidade do Míssera. Prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
+            continuar();
           }
         }
       }
