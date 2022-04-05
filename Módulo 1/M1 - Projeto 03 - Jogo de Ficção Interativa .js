@@ -12,7 +12,8 @@ let destino,
   jogada,
   quantidadeInimigos,
   manada,
-  arlim = 0,
+  gerald,
+  arlim = 1,
   livera = 1,
   missera = 0,
   labuge = 1;
@@ -26,18 +27,37 @@ let tempo = {
 let personagem = {
   forca: 3,
   resistencia: 3,
-  energia: 10,
+  energia: 15,
   vida: 15,
-  ataque: this.forca + this.energia,
-  defesa: this.resistencia + this.energia,
+  ataque: function () {
+    return this.forca + this.energia;
+  },
+  defesa: function () {
+    return this.resistencia + this.energia;
+  },
+  ataqueLivera: function () {
+    this.energia--;
+    return this.ataque() * 10;
+  },
+  defesaLabuge: function () {
+    this.energia--;
+    return this.defesa() * 10;
+  },
 };
+
 let dragao = {
   forca: 30,
   resistencia: 30,
-  energia: 100,
-  vida: 100,
-  ataque: this.forca + this.energia,
-  defesa: this.resistencia * this.energia,
+  energia: 150,
+  vida: 150,
+  ataque: function () {
+    this.energia -= 11;
+    return this.forca + this.energia;
+  },
+  defesa: function () {
+    this.energia -= 11;
+    return this.resistencia + this.energia;
+  },
 };
 
 // FUNÇÕES
@@ -111,7 +131,7 @@ escolhaDestino = () => {
     console.clear();
     mostraStatus();
     console.log(`Por onde você deseja ir? `);
-    let listaDestino = [, `(1) Resgatar a princesa Arlim`, `(2) Roubar a espada Lívera`, `(3) Buscar a pedra mística de Labuge`, `(4) Enfrentar o dragão Míssera`, `(5) Dormir`, , , , `(9) Desistir`];
+    let listaDestino = [, `(1) Resgatar a princesa Arlim`, `(2) Roubar a espada Lívera`, `(3) Buscar a pedra mística de Labuge`, `(4) Enfrentar o dragão Míssera`, , , , `(8) Dormir`, `(9) Desistir`];
 
     if (arlim < 1) {
       console.log(listaDestino[1]);
@@ -126,7 +146,7 @@ escolhaDestino = () => {
       console.log(listaDestino[4]);
     }
     if (tempo.hora >= 17 || tempo.hora < 5) {
-      console.log(listaDestino[5]);
+      console.log(listaDestino[8]);
     }
     console.log(listaDestino[9]);
     destino = +prompt();
@@ -738,16 +758,27 @@ while (true) {
           } else if (livera > 0) {
             mostraStatus();
             console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e se levanta dentro da sua caverna.`);
-            console.log(`Você contempla a grandiosidade do Míssera. Prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
+            console.log(`Você contempla a grandiosidade do Míssera, enquanto prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
             continuar();
+
+            for (i = personagem.vida || dragao.vida; i > 0; passaMinuto(5)) {
+              mostraTempo();
+              missera = dado() + dragao.ataque();
+              gerald = dado() + personagem.defesaLabuge();
+
+              console.log(missera);
+              console.log(gerald);
+              prompt();
+              i++;
+            }
           }
         }
       }
     }
   }
 
-  // DESTINO 5
-  else if (destino == 5) {
+  // DESTINO 8
+  else if (destino == 8) {
     (tempo.hora = 5), (tempo.minuto = Math.floor(Math.random() * 59 + 1)), tempo.dia++;
   }
 
