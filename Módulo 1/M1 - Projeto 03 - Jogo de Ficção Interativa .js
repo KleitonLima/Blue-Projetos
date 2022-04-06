@@ -117,7 +117,6 @@ descanso = () => {
 };
 escolhaDestino = () => {
   do {
-    console.clear();
     statusPers();
     console.log(`Por onde você deseja ir? `);
     let listaDestino = [
@@ -151,8 +150,8 @@ escolhaDestino = () => {
     }
     if (missera == 0) {
       console.log(listaDestino[7]);
-      destino = +prompt();
     }
+    destino = +prompt();
   } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 7);
 };
 
@@ -693,7 +692,7 @@ while (true) {
     console.log(`Você contempla a grandiosidade do Míssera, enquanto prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
     continuar();
 
-    while (true) {
+    batalha: while (true) {
       missera = dado();
       gerald = dado();
       do {
@@ -764,6 +763,7 @@ while (true) {
       gameOver();
       break;
     }
+    passaHora(2);
   } else if (destino == 5) {
     if (missera == 0) {
       do {
@@ -782,8 +782,10 @@ while (true) {
         break;
       }
     } else {
+      console.clear();
       console.log(`A dimensão Uruzar agradece por tudo que fez por nós! Seremos eternamente gratos a você!`);
       continuar();
+      console.clear();
       console.log(`Arlim te orienta a colocar a pedra de Labuge no chão e atingi-la com a ponta da espada de Lívera.`);
       console.log(`Fazendo isso um imenso brilho saí da pedra, até que não seja mais possível enxergar nada além da luz.`);
       console.log(`Você acorda no mesmo local onde foi sugado. No lugar de onde antes havia o portal, não há mais nada além da rocha.`);
