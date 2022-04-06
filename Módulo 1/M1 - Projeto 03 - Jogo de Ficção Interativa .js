@@ -1,9 +1,24 @@
 console.clear();
 const prompt = require("prompt-sync")();
 
-// PROJETO NÃO FINALIZADO
-
 // JOGO DE FICÇÃO INTERATIVA
+
+// HISTÓRIA
+console.log(`Gerald, explorava a floresta Amazônica em busca de novas descobertas.
+De repente sentiu um grande tremor que sacudiu até as maiores árvores!
+Ali próximo ele ouviu um enorme estrondo. Chegando perto para conferir deu de cara com uma imensa cratera.
+Não iria descer para olhar se não tivesse visto um estranho líquido que ondulava na parede.
+Chegando mais perto notou que formava um círculo e não refletia sua imagem. Na verdade parecia ter algo lá dentro.
+Com a ponta do dedo ele tocou no líquido e rapidamente foi sugado para dentro dele.`);
+continuar();
+console.log(`Acordando em outra floresta, totalmente diferente de onde estava, ele se levantou e seguiu os sons do que parecia ser um vilarejo próximo.
+Chegando nele deu de cara com uma feira. As pessoas do local se vestiam estranho e olhavam pra ele. Pensando bem, ele era o estranho ali.
+Um homem de uma das barracas o chamou para conversar. Sabendo que não era dali o homem conta que ele está na dimensão Uruzar.
+Uma dimensão oculta da terra convencional. Faz um teste com ele que revela que ele é o escolhido para salvar aquela dimensão.`);
+continuar();
+console.log(`Durante séculos vivemos em completa paz. Até que alguém libertou o dragão Míssera. Depois de solto, ele aprisionou a princesa Arlim,
+tomou para sí a espada de Lívera que é a única maneira de derrotá-lo e vem atacando todas as vilas que se opõem a ele.
+Você deve derrotar o Míssera, usando a espada de Livera e a pedra de Labuge e resgatar a princesa Arlim para que ela te ajude a voltar para casa.`);
 
 // VARIÁVEIS
 let destino,
@@ -13,10 +28,10 @@ let destino,
   quantidadeInimigos,
   manada,
   gerald,
-  arlim = 1,
-  livera = 1,
+  arlim = 0,
+  livera = 0,
   missera = 0,
-  labuge = 1;
+  labuge = 0;
 
 // OBJETOS
 let tempo = {
@@ -169,7 +184,6 @@ while (true) {
     } else {
       statusPers();
       console.log(`Muito bem! Siga por este caminho e chegará até o cativeiro da princesa. Cuidado no caminho e boa sorte!`);
-      console.log();
       continuar();
 
       // ALEATORIEDADE
@@ -255,11 +269,10 @@ while (true) {
       } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
 
       if (escolha == 1) {
-        statusPers();
         passaHora(4);
+        statusPers();
         console.log(`Você se entregou e foi preso! Na prisão, a princesa Arlim te conta o plano de fuga dela.`);
         console.log(`Juntos, vocês conseguem fugir e voltar para a cidade!`);
-        console.log();
         continuar();
         arlim++;
       } else if (escolha == 2) {
@@ -270,9 +283,9 @@ while (true) {
           gameOver();
           break;
         } else if (livera > 0) {
-          statusPers();
           passaHora(2);
           passaMinuto(30);
+          statusPers();
           console.log(`Com a Lívera em mãos, os guardas não tiveram chance contra você, que derrotou todos eles`);
           console.log(`e salvou a princesa Arlim da prisão, voltando com ela para a cidade.`);
           continuar();
@@ -284,7 +297,6 @@ while (true) {
           passaHora(3);
           statusPers();
           console.log(`Você conseguiu resgatar a princesa sem que ninguém percebesse. Juntos, vocês voltaram para cidade...`);
-          console.log();
           continuar();
           arlim++;
         } else {
@@ -299,18 +311,17 @@ while (true) {
             console.log(listaEscolha[3]);
             escolha = +prompt();
           } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 3);
+
           if (escolha == 1) {
             passaHora(2);
             statusPers();
             console.log(`Você conseguiu fugir de volta para a cidade!`);
-            console.log();
             continuar();
           } else if (escolha == 2) {
             passaHora(4);
             statusPers();
             console.log(`Você se entregou e foi preso! Ao encontrar a princesa Arlim na prisão você descobre que ela já tinha um plano de fuga.`);
             console.log(`Juntos, vocês conseguem fugir e voltar a cidade.`);
-            console.log();
             continuar();
             arlim++;
           } else if (escolha == 3) {
@@ -322,8 +333,8 @@ while (true) {
               break;
             } else if (livera > 0) {
               passaMinuto(30);
-              statusPers();
               passaHora(2);
+              statusPers();
               console.log(`Você acabou com todos os guardas e resgatou a princesa Arlim. Juntos, voltaram pra cidade.`);
               continuar();
               arlim++;
@@ -468,7 +479,7 @@ while (true) {
         statusPers();
         passaHora(3);
         passaMinuto(30);
-        console.log(`Você derrotou os os guardas que vigiavam a espada. Em posse da Lívera, você derrotou todos os Argadans da base e voltou para a cidade.`);
+        console.log(`Você derrotou os guardas que vigiavam a espada. Em posse da Lívera, você derrotou todos os Argadans da base e voltou para a cidade.`);
         continuar();
         livera++;
         descanso();
@@ -653,7 +664,7 @@ while (true) {
         statusPers();
         console.log(`Você coloca o pequeno jarro com água na mão da estátua.`);
         console.log(`Começam a nascer flores na estátua que se alastram por todo o lado deixando tudo cheio de flores.`);
-        console.log(`Uma enorme flor nasce no centro da sala. Ao desabrochar ela revela a pedra de Labuge dentro dela.`);
+        console.log(`Uma enorme flor nasce do totem e trás até você a pedra de Labuge. Ao desabrochar ela revela a pedra de Labuge dentro dela.`);
         continuar();
         passaMinuto(5);
         statusPers();
@@ -675,95 +686,96 @@ while (true) {
       console.log(`Perfeito! Você está pronto para derrotar o Míssera! Seja forte e corajoso nessa batalha.`);
       console.log(`Suba por este caminho e chegará ao covil do dragão Míssera! Boa sorte!`);
       continuar();
-    }
-    passaHora(5);
-    statusPers();
-    console.log(`Depois de horas subindo a montanha, finalmente você chega na caverna do dragão Míssera.`);
-    passaMinuto(20);
-    console.log(`Você entra devagar caverna adentro. Então, você percebe que, por dentro, mais parece um castelo.`);
-    console.log(`Com alguns candelabros e umas fogueiras acesas você vai se guiando e entrando ainda mais.`);
-    continuar();
-    statusPers();
-    console.log(`Rápido e repentinamente atrás de você, saindo das sombras uma boca gigante e aberta vem em sua direção.`);
-    console.log(`Com a pedra e Labuge, você cria uma bola escudo ao seu redor que te protege da mordida mortal do Míssera.`);
-    continuar();
-    statusPers();
-    console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e se levanta dentro da sua caverna.`);
-    console.log(`Você contempla a grandiosidade do Míssera, enquanto prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
-    continuar();
 
-    batalha: while (true) {
-      missera = dado();
-      gerald = dado();
-      do {
-        listaEscolha = [, `(1) ATACAR`, `(2) DEFENDER`];
-        statusPers();
-        statusDrag();
-        console.log(`Como agir?`);
-        escolha = +prompt(`Deseja ${listaEscolha[1]} ou ${listaEscolha[2]}: `);
-      } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 2);
+      passaHora(5);
+      statusPers();
+      console.log(`Depois de horas subindo a montanha, finalmente você chega na caverna do dragão Míssera.`);
+      passaMinuto(20);
+      console.log(`Você entra devagar caverna adentro. Então, você percebe que, por dentro, mais parece um castelo.`);
+      console.log(`Com alguns candelabros e umas fogueiras acesas você vai se guiando e entrando ainda mais.`);
+      continuar();
+      statusPers();
+      console.log(`Rápido e repentinamente atrás de você, saindo das sombras uma boca gigante e aberta vem em sua direção.`);
+      console.log(`Com a pedra e Labuge, você cria uma bola escudo ao seu redor que te protege da mordida mortal do Míssera.`);
+      continuar();
+      statusPers();
+      console.log(`Com a Lívera você fura a língua do Míssera, que se afasta e se levanta dentro da sua caverna.`);
+      console.log(`Você contempla a grandiosidade do Míssera, enquanto prepara a espada de Lívera e a pedra de Labuge para a batalha!`);
+      continuar();
 
-      if (escolha == 1) {
-        if (gerald >= missera) {
-          gerald += personagem.ataqueLivera();
-          missera += dragao.defesa;
-          perdeVidaDrag(gerald - missera);
+      batalha: while (true) {
+        missera = dado();
+        gerald = dado();
+        do {
+          listaEscolha = [, `(1) ATACAR`, `(2) DEFENDER`];
           statusPers();
-
-          console.log(`Você acertou o ataque!`);
           statusDrag();
-          continuar();
-        } else {
-          perdeVidaPers(missera - gerald);
-          statusPers();
+          console.log(`Como agir?`);
+          escolha = +prompt(`Deseja ${listaEscolha[1]} ou ${listaEscolha[2]}: `);
+        } while (isNaN(escolha) || !Number.isInteger(escolha) || escolha < 1 || escolha > 2);
 
-          console.log(`Míssera defendeu o ataque e contra-atacou!`);
-          statusDrag();
-          continuar();
-        }
-        if (personagem.vida <= 0) {
-          break;
-        }
-        if (dragao.vida <= 0) {
-          break;
-        }
-      } else if (escolha == 2) {
-        if (missera > gerald) {
-          gerald += personagem.defesaLabuge();
-          missera += dragao.ataque;
-          perdeVidaPers(missera - gerald);
-          statusPers();
+        if (escolha == 1) {
+          if (gerald >= missera) {
+            gerald += personagem.ataqueLivera();
+            missera += dragao.defesa;
+            perdeVidaDrag(gerald - missera);
+            statusPers();
 
-          console.log(`Você recebeu um ataque!`);
-          statusDrag();
-          continuar();
-        } else {
-          statusPers();
+            console.log(`Você acertou o ataque!`);
+            statusDrag();
+            continuar();
+          } else {
+            perdeVidaPers(missera - gerald);
+            statusPers();
 
-          console.log(`Você defendeu o ataque!`);
-          statusDrag();
-          continuar();
-        }
-        if (personagem.vida <= 0) {
-          break;
-        }
-        if (dragao.vida <= 0) {
-          break;
+            console.log(`Míssera defendeu o ataque e contra-atacou!`);
+            statusDrag();
+            continuar();
+          }
+          if (personagem.vida <= 0) {
+            break;
+          }
+          if (dragao.vida <= 0) {
+            break;
+          }
+        } else if (escolha == 2) {
+          if (missera > gerald) {
+            gerald += personagem.defesaLabuge();
+            missera += dragao.ataque;
+            perdeVidaPers(missera - gerald);
+            statusPers();
+
+            console.log(`Você recebeu um ataque!`);
+            statusDrag();
+            continuar();
+          } else {
+            statusPers();
+
+            console.log(`Você defendeu o ataque!`);
+            statusDrag();
+            continuar();
+          }
+          if (personagem.vida <= 0) {
+            break;
+          }
+          if (dragao.vida <= 0) {
+            break;
+          }
         }
       }
+      if (dragao.vida <= 0) {
+        statusPers();
+        console.log(`Você venceu o dragão Míssera! Agora a dimensão Uruzar está livre e em paz!`);
+        continuar();
+      }
+      if (personagem.vida <= 0) {
+        mostraTempo();
+        console.log(`Mesmo com toda sua bravura, o dragão Míssera demonstrou o quão forte é e matou você!`);
+        gameOver();
+        break;
+      }
+      passaHora(2);
     }
-    if (dragao.vida <= 0) {
-      statusPers();
-      console.log(`Você venceu o dragão Míssera! Agora a dimensão Uruzar está livre e em paz!`);
-      continuar();
-    }
-    if (personagem.vida <= 0) {
-      mostraTempo();
-      console.log(`Mesmo com toda sua bravura, o dragão Míssera demonstrou o quão forte é e matou você!`);
-      gameOver();
-      break;
-    }
-    passaHora(2);
   } else if (destino == 5) {
     if (missera == 0) {
       do {
@@ -796,10 +808,7 @@ while (true) {
     }
   } else if (destino == 6) {
     (tempo.hora = 5), (tempo.minuto = Math.floor(Math.random() * 59 + 1)), tempo.dia++;
-  }
-
-  // DESTINO 9
-  else if (destino == 7) {
+  } else if (destino == 7) {
     break;
   }
 }
