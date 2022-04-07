@@ -3,29 +3,11 @@ const prompt = require("prompt-sync")();
 
 // JOGO DE FICÇÃO INTERATIVA
 
-// HISTÓRIA
-console.log(`Gerald, explorava a floresta Amazônica em busca de novas descobertas.
-De repente sentiu um grande tremor que sacudiu até as maiores árvores!
-Ali próximo ele ouviu um enorme estrondo. Chegando perto para conferir deu de cara com uma imensa cratera.
-Não iria descer para olhar se não tivesse visto um estranho líquido que ondulava na parede.
-Chegando mais perto notou que formava um círculo e não refletia sua imagem. Na verdade parecia ter algo lá dentro.
-Com a ponta do dedo ele tocou no líquido e rapidamente foi sugado para dentro dele.`);
-continuar();
-console.log(`Acordando em outra floresta, totalmente diferente de onde estava, ele se levantou e seguiu os sons do que parecia ser um vilarejo próximo.
-Chegando nele deu de cara com uma feira. As pessoas do local se vestiam estranho e olhavam pra ele. Pensando bem, ele era o estranho ali.
-Um homem de uma das barracas o chamou para conversar. Sabendo que não era dali o homem conta que ele está na dimensão Uruzar.
-Uma dimensão oculta da terra convencional. Faz um teste com ele que revela que ele é o escolhido para salvar aquela dimensão.`);
-continuar();
-console.log(`Durante séculos vivemos em completa paz. Até que alguém libertou o dragão Míssera. Depois de solto, ele aprisionou a princesa Arlim,
-tomou para sí a espada de Lívera que é a única maneira de derrotá-lo e vem atacando todas as vilas que se opõem a ele.
-Você deve derrotar o Míssera, usando a espada de Livera e a pedra de Labuge e resgatar a princesa Arlim para que ela te ajude a voltar para casa.`);
-
 // VARIÁVEIS
 let destino,
   emboscada,
   escolha,
   jogada,
-  inimigos,
   quantidadeInimigos,
   manada,
   gerald,
@@ -66,9 +48,6 @@ perdeVidaPers = (dano) => {
 };
 perdeVidaDrag = (dano) => {
   return (dragao.vida -= dano);
-};
-perdeEnergia = (esforco) => {
-  return (personagem.energia -= esforco);
 };
 passaHora = (addhora) => {
   return (tempo.hora += addhora);
@@ -170,6 +149,24 @@ escolhaDestino = () => {
     destino = +prompt();
   } while (isNaN(destino) || !Number.isInteger(destino) || destino < 1 || destino > 7);
 };
+// HISTÓRIA
+console.log(`Gerald, explorava a floresta Amazônica em busca de novas descobertas.
+De repente sentiu um grande tremor que sacudiu até as maiores árvores!
+Ali próximo ele ouviu um enorme estrondo. Chegando perto para conferir deu de cara com uma imensa cratera.
+Não iria descer para olhar se não tivesse visto um estranho líquido que ondulava na parede.
+Chegando mais perto notou que formava um círculo e não refletia sua imagem. Na verdade parecia ter algo lá dentro.
+Com a ponta do dedo ele tocou no líquido e rapidamente foi sugado para dentro dele.`);
+continuar();
+console.clear();
+console.log(`Acordando em outra floresta, totalmente diferente de onde estava, ele se levantou e seguiu os sons do que parecia ser um vilarejo próximo.
+Chegando nele deu de cara com uma feira. As pessoas do local se vestiam estranho e olhavam pra ele. Pensando bem, ele era o estranho ali.
+Um homem de uma das barracas o chamou para conversar. Sabendo que não era dali o homem conta que ele está na dimensão Uruzar.
+Uma dimensão oculta da terra convencional. Faz um teste com ele que revela que ele é o escolhido para salvar aquela dimensão.`);
+continuar();
+console.clear();
+console.log(`Durante séculos vivemos em completa paz. Até que alguém libertou o dragão Míssera. Depois de solto, ele aprisionou a princesa Arlim,
+tomou para sí a espada de Lívera que é a única maneira de derrotá-lo e vem atacando todas as vilas que se opõem a ele.
+Você deve derrotar o Míssera, usando a espada de Livera e a pedra de Labuge e resgatar a princesa Arlim para que ela te ajude a voltar para casa.`);
 
 // ESCOLHA DO DESTINO
 while (true) {
@@ -763,7 +760,7 @@ while (true) {
       }
       passaHora(5);
     }
-  } else if (destino == 5) {
+  } else if (destino == 5 && livera > 0 && arlim > 0 && labuge > 0) {
     if (missera == 0) {
       do {
         statusPers();
@@ -782,7 +779,7 @@ while (true) {
         break;
       }
     } else {
-      mostraTempo()
+      mostraTempo();
       console.log(`A dimensão Uruzar agradece por tudo que fez por nós! Seremos eternamente gratos a você!`);
       continuar();
       console.clear();
@@ -794,7 +791,7 @@ while (true) {
       console.log();
       break;
     }
-  } else if (destino == 6) {
+  } else if (destino == 6 && (tempo.hora >= 17 || tempo.hora < 5)) {
     (tempo.hora = 5), (tempo.minuto = Math.floor(Math.random() * 59 + 1)), tempo.dia++;
   } else if (destino == 7) {
     break;
