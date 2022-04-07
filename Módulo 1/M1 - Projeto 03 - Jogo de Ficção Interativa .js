@@ -174,7 +174,7 @@ while (true) {
   escolhaDestino();
 
   // DESTINOS
-  if (destino == 1) {
+  if (destino == 1 && arlim == 0) {
     if (arlim > 0) {
       statusPers();
       console.log(`Você já resgatou a princesa. Siga nas outras missões!`);
@@ -341,7 +341,7 @@ while (true) {
         }
       }
     }
-  } else if (destino == 2) {
+  } else if (destino == 2 && livera == 0) {
     if (livera > 0) {
       statusPers();
       console.log(`Você já roubou a espada! Siga nas outras missões.`);
@@ -506,7 +506,7 @@ while (true) {
         }
       }
     }
-  } else if (destino == 3) {
+  } else if (destino == 3 && labuge == 0) {
     if (labuge > 0) {
       statusPers();
       console.log(`Você já recuperou a pedra de Labuge! Siga nas outras missões.`);
@@ -666,7 +666,7 @@ while (true) {
         labuge++;
       }
     }
-  } else if (destino == 4) {
+  } else if (destino == 4 && missera == 0) {
     if ((livera == 0 && labuge == 0) || (livera > 0 && labuge == 0) || (livera == 0 && labuge > 0)) {
       statusPers();
       console.log(`Você não terá chance contra o dragão Míssera se não tiver tanto a pedra de Labuge quanto a espada de Livera.`);
