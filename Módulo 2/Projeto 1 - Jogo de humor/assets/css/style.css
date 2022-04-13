@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap");
+
+* {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-image: url(../img/the-matrix-digital-rain.jpg);
+  background-size: cover;
+
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  align-items: center;
+  color: #0cf00c;
+  font-size: 10vh;
+  text-shadow: 0.5vh 0.5vh #0492108f;
+}
