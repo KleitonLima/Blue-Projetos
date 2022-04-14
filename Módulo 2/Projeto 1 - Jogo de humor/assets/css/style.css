@@ -1,57 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap");
-
 * {
   margin: 0;
-  font-family: "Roboto Mono", monospace;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: "Matrix";
+}
+
+@font-face {
+  font-family: "Matrix";
+  src: url("../fonts/matrix.ttf");
 }
 
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   background-image: url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg);
   background-size: cover;
-
   height: 50vh;
-  width: 100%;
 }
-
 header h1 {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+  color: #ffffff;
+  text-shadow: 0vh 0vh 5vh #00ff00;
+}
+span#the {
   font-size: 7vh;
-  color: #ffffff;
-  text-shadow: 0vh 0vh 5vh #00ff00;
 }
-header h2 {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+span#programator {
+  font-size: 25vh;
+}
+span#evolution {
   font-size: 15vh;
-  color: #ffffff;
-  text-shadow: 0vh 0vh 5vh #00ff00;
 }
-header h3 {
+main {
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
-  font-size: 10vh;
-  color: #ffffff;
-  text-shadow: 0vh 0vh 5vh #00ff00;
-}
-
-main {
   background-image: url(https://uploads.jovemnerd.com.br/wp-content/uploads/2021/08/matrix-4.jpg);
   background-size: cover;
   background-position: bottom;
   background-color: #000000;
   height: 100vh;
-  width: 100%;
-
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-main h1 {
-  font-size: 5vh;
-  color: #00ff00;
-  text-shadow: 0.5vh 0.5vh 0.5vh #000000;
 }
