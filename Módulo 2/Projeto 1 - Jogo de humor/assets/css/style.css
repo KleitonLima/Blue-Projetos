@@ -23,6 +23,7 @@ header {
   background-size: cover;
 }
 header h1 {
+  padding: 1%;
   color: #ffffff;
   text-shadow: 0 0 5vh #00ff00;
 }
@@ -42,8 +43,8 @@ main {
   align-items: center;
   background-image: url("../img/matrix.jpg");
   background-size: cover;
-  background-position: bottom;
   background-color: #000000;
+  padding-bottom: 2%;
 }
 main h1 {
   font-size: 300%;

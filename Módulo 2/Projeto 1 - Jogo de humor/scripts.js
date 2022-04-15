@@ -33,7 +33,7 @@ function handleChangeImg() {
     img.setAttribute("src", imgslist[2]);
   } else if (img.attributes.src.nodeValue == imgslist[2]) {
     date.innerHTML = "DECIMO DIA DE PROGRAMACÃO";
-    situation.innerHTML = "ENXERGA CODIGO EM TUDO";
+    situation.innerHTML = "ENXERGANDO CODIGO EM TUDO";
     img.setAttribute("src", imgslist[3]);
   } else if (img.attributes.src.nodeValue == imgslist[3]) {
     date.innerHTML = "QUINZE DIAS DE PROGRAMACÃO";
