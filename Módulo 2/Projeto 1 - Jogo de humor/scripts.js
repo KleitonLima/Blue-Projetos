@@ -14,12 +14,6 @@ const situation = document.querySelector("#situation");
 const img = document.querySelector("img");
 const button = document.querySelector("button");
 
-// console.log(imgslist);
-// console.dir(date);
-// console.log(situation);
-// console.log(img);
-// console.log(button);
-
 button.addEventListener("click", () => {});
 
 function handleChangeImg() {
