@@ -1,2 +1,2 @@
 # Blue-Projetos
-Todos os projetos feitos no curso Dev Web da Blue EdTech.
+Primeiros projetos feitos no curso de Desenvolvimento Full Stack da Blue EdTech.
